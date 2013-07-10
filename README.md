@@ -4,7 +4,7 @@ make easy forms with Express middleware an objects -- still needs some work, sen
 
 
 # Middleware Usage:
-```
+```coffee
 middle.login = (req, res, next) ->
 
   login =
