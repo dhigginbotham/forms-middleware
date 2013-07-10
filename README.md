@@ -4,6 +4,7 @@ The purpose of `andForms` is to give an easy way to build forms from an Object, 
 ### Features
 - built in csrf by default, you will need to use `app.use express.csrf()` read more [`connect`](http://www.senchalabs.org/connect/csrf.html)
 - 100% coffee-script, hate it or love it
+- underscore library to deep extend form objects
 - flexible
 
 ### Install
