@@ -1,3 +1,4 @@
+    
 # mod depends
 fs = require "fs"
 path = require "path"
@@ -10,7 +11,7 @@ compile = path.join __dirname, includes, "form.jade"
 
 # build default form object as a first-class fn, something 
 # about `hot code` ;)
-form = (opts) ->
+form = (req, opts) ->
 
   # form method
   @method = "get"
@@ -25,7 +26,9 @@ form = (opts) ->
   @id = null
 
   # form fields
-  @forms = []
+  @forms = [
+    # {type: "password", name: "password", id: "password", name: "password", label: "Password", value: null}
+  ]
 
   # form buttons
   @buttons = [
@@ -34,10 +37,25 @@ form = (opts) ->
   ]
 
   # form csrf protection
-  @_csrf = null
+  @_csrf = if req.session._csrf? then req.session._csrf else null
 
   # extend form, for dynamic opts
   if opts? then _.extend @, opts
+
+  for form in @forms
+    do (form) ->
+      
+      if form.value == "undefined" or typeof form.value == "undefined" or not form.value? then form.value = null
+      
+      if form.id == "undefined" or typeof form.id == "undefined" or not form.id? then form.id = null
+      
+      if form.label == "undefined" or typeof form.label == "undefined" or not form.label? then form.label = null
+
+      # set default type to `text`
+      if form.type == "undefined" or typeof form.type == "undefined" or not form.type? then form.type = "text"
+
+      # apply fallback for `id` to `name`
+      if form.name? and not form.id? then form.id = form.name
 
   @
 
