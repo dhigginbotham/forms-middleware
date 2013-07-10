@@ -2,11 +2,24 @@ form.text-left(method="#{method}", id="#{id}")
   fieldset
     legend #{title}
     for form in forms
-      label(for="#{form.id}") #{form.label}
-      if (form.value)
-        input(type="#{form.type}", name="#{form.name}", id="#{form.id}", value="#{form.value}")
-      else
-        input(type="#{form.type}", name="#{form.name}", id="#{form.id}")
+      if (form.label)
+        label(for="#{form.id}") #{form.label}
+      case form.type
+        when "text"
+          if (form.value)
+            input(type="#{form.type}", name="#{form.name}", id="#{form.id}", value="#{form.value}")
+          else
+            input(type="#{form.type}", name="#{form.name}", id="#{form.id}")
+        when "textarea"
+          if (form.value)
+            textarea(name="#{form.name}", id="#{form.id}") #{form.value}
+          else
+            textarea(name="#{form.name}", id="#{form.id}")
+        default
+          if (form.value)
+            input(type="#{form.type}", name="#{form.name}", id="#{form.id}", value="#{form.value}")
+          else
+            input(type="#{form.type}", name="#{form.name}", id="#{form.id}")
 
     input(type="hidden", name="_csrf", value="#{_csrf}")
   //- buttons & form ending, etc
