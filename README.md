@@ -81,9 +81,9 @@ Here's how you use andForms as a middleware in your express app
 
 ```
 
-```
+```jade
 
-  ### account.jade ###
+  //- account.jade
 
   extends ../layout
 
