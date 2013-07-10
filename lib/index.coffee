@@ -11,7 +11,6 @@ compile = path.join __dirname, includes, "form.jade"
 # build default form object as a first-class fn, something 
 # about `hot code` ;)
 form = (opts) ->
-  if conf.debug.forms == true then console.log "#{colors.cyan}Form Builder: #{colors.reset}To turn off stdout logging check #{colors.red}#{conf.app.paths.config}#{colors.reset}"
 
   # form method
   @method = "get"
@@ -58,11 +57,5 @@ form::render = () ->
 
   #   != res.locals.whateverYouNamedIt
   @_rendered = template self
-
-  if conf.debug.forms == true
-    console.log "#{mod} #{colors.cyan}Compiling:"
-    console.log "#{colors.reset}#{colors.red}"
-    console.log @_rendered
-    console.log "#{colors.reset}"
   
 module.exports = form
