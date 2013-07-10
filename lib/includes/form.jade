@@ -1,0 +1,15 @@
+form.text-left(method="#{method}", id="#{id}")
+  fieldset
+    legend #{title}
+    for form in forms
+      label(for="#{form.id}") #{form.label}
+      if (form.value)
+        input(type="#{form.type}", name="#{form.name}", id="#{form.id}", value="#{form.value}")
+      else
+        input(type="#{form.type}", name="#{form.name}", id="#{form.id}")
+
+    input(type="hidden", name="_csrf", value="#{_csrf}")
+  //- buttons & form ending, etc
+  for btn in buttons
+    button.button(type="submit", class="#{btn.class}") #{btn.std}
+    |  
