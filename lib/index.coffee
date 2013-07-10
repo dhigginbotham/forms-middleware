@@ -33,7 +33,6 @@ form = (req, opts) ->
   # form buttons
   @buttons = [
     {type: "submit", name: "submit", id: "submit", name: "submit", class: "primary", std: "Submit"}
-    # {type: "cancel", name: "cancel", id: "cancel", name: "cancel", class: "secondary", std: "Cancel"}
   ]
 
   # form csrf protection
