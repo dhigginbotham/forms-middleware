@@ -21,7 +21,8 @@ form.text-left(method="#{method}", id="#{id}")
           else
             input(type="#{form.type}", name="#{form.name}", id="#{form.id}")
 
-    input(type="hidden", name="_csrf", value="#{_csrf}")
+    if (_csrf)
+      input(type="hidden", name="_csrf", value="#{_csrf}")
   //- buttons & form ending, etc
   for btn in buttons
     button.button(type="submit", class="#{btn.class}") #{btn.std}
