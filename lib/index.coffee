@@ -42,9 +42,12 @@ form = (req, opts) ->
   # extend form, for dynamic opts
   if opts? then _.extend @, opts
 
+  self = @
+
+  # loop through our forms and fix them for jade
   for form in @forms
     do (form) ->
-      
+
       if form.value == "undefined" or typeof form.value == "undefined" or not form.value? then form.value = null
       
       if form.id == "undefined" or typeof form.id == "undefined" or not form.id? then form.id = null
@@ -73,7 +76,6 @@ form::render = () ->
   # set `this._rendered` to our template file
   # usage inside of a page:
 
-  #   != res.locals.whateverYouNamedIt
   @_rendered = template self
   
 module.exports = form
