@@ -8,7 +8,7 @@ The purpose of `forms-middleware` is to give an easy way to build forms from an 
 - flexible
 
 ### Install
-```npm install git+https://github.com/dhigginbotham/andForms --save```
+```npm install git+https://github.com/dhigginbotham/forms-middleware --save```
 
 ### Usage
 Here's how you use andForms as a middleware in your express app
