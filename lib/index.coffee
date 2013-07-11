@@ -62,7 +62,7 @@ form = (req, opts) ->
   @
 
 # jade render method so we can get cool stuff on the client, yeah.
-form::render = () ->
+form::render = (fn) ->
 
   # persist this, so we're not doing anything tricky later  
   self = @
@@ -76,5 +76,7 @@ form::render = () ->
   # usage inside of a page:
 
   @_rendered = template self
+
+  fn null, @_rendered
   
 module.exports = form
