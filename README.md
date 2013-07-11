@@ -1,5 +1,5 @@
-# andForms
-The purpose of `andForms` is to give an easy way to build forms from an Object, so you can either build out static middleware or pull from mongodb, mysql, etc..
+# forms-middleware
+The purpose of `forms-middleware` is to give an easy way to build forms from an Object, so you can either build out static middleware or pull from mongodb, mysql, etc..
 
 ### Features
 - built in csrf by default, you will need to use `app.use express.csrf()` read more [`connect`](http://www.senchalabs.org/connect/csrf.html)
