@@ -2,7 +2,7 @@
   "name": "forms-middleware",
   "version": "0.0.1",
   "description": "make forms with objects and middleware, uses jade",
-  "main": "lib/index.coffee",
+  "main": "lib/index.js",
   "private": "private",
   "author": {
     "name": "David Higginbotham",
@@ -14,6 +14,9 @@
     "jade": "latest"
   },
   "devDependencies": {
-    "coffee-script": ">= 1.3.3"
+    "coffee-script": ">= 1.3.3",
+    "uglify-js": "~2.3.6",
+    "stylus": "~0.34.1",
+    "flour": "~0.5.5"
   }
 }

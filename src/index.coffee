@@ -6,8 +6,6 @@ jade = require "jade"
 _ = require "underscore"
 
 # `includes` prefix path and `compile` path
-includes = "./includes"
-compile = path.join __dirname, includes, "form.jade"
 
 # build default form object as a first-class fn, something 
 # about `hot code` ;)
@@ -38,10 +36,14 @@ form = (req, opts) ->
   # form csrf protection
   @_csrf = if req.session._csrf? then req.session._csrf else null
 
+  @framework = "foundation"
+
   # extend form, for dynamic opts
   if opts? then _.extend @, opts
 
   self = @
+  
+  @template = path.join __dirname, "..", "templates", self.framework + "-forms.jade"
 
   # loop through our forms and fix them for jade
   for form in @forms
@@ -68,7 +70,7 @@ form::render = (fn) ->
   self = @
 
   # render our template with `jade.compile`
-  template = jade.compile fs.readFileSync compile, "utf8"
+  template = jade.compile fs.readFileSync self.template, "utf8"
 
   # should be defined in middleware, not here.
   
