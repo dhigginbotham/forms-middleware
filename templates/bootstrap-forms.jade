@@ -2,45 +2,45 @@ form(method="#{method}", id="#{id}")
   fieldset
     legend #{title}
     for form in forms
-      if (form.label && form.type != "checkbox")
-        label(for="#{form.id}") #{form.label}
-      case form.type
+      .form-group
+        if (form.label && form.type != "checkbox")
+          label(for="#{form.id}") #{form.label}
+        case form.type
+          when "text"
+            if (form.value)
+              input.form-control(type=form.type, name=form.name, id=form.id, value=form.value)
+            else
+              input.form-control(type=form.type, name=form.name, id=form.id)
 
-        when "text"
-          if (form.value)
-            input(type=form.type, name=form.name, id=form.id, value=form.value)
-          else
-            input(type=form.type, name=form.name, id=form.id)
+          when "textarea"
+            if (form.value)
+              textarea(name=form.name, id=form.id) #{form.value}
+            else
+              textarea(name=form.name, id=form.id)
 
-        when "textarea"
-          if (form.value)
-            textarea(name=form.name, id=form.id) #{form.value}
-          else
-            textarea(name=form.name, id=form.id)
-
-        when "checkbox"
-          if (form.value)
-            .row
-              .small-1.columns
-                input(type=form.type, name=form.name, id=form.id, checked)
-              .small-11.columns
-                label(for=form.id) #{form.label}
-          else
-            .row
-              .small-1.columns
-                input(type=form.type, name=form.name, id=form.id)
-              .small-11.columns
-                label(for=form.id) #{form.label}
-                
-        default
-          if (form.value)
-            input(type=form.type, name=form.name, id=form.id, value=form.value)
-          else
-            input(type=form.type, name=form.name, id=form.id)
+          when "checkbox"
+            if (form.value)
+              .row
+                .small-1.columns
+                  input(type=form.type, name=form.name, id=form.id, checked)
+                .small-11.columns
+                  label(for=form.id) #{form.label}
+            else
+              .row
+                .small-1.columns
+                  input(type=form.type, name=form.name, id=form.id)
+                .small-11.columns
+                  label(for=form.id) #{form.label}
+                  
+          default
+            if (form.value)
+              input.form-control(type=form.type, name=form.name, id=form.id, value=form.value)
+            else
+              input.form-control(type=form.type, name=form.name, id=form.id)
 
     if (_csrf)
       input(type="hidden", name="_csrf", value=_csrf)
   //- buttons & form ending, etc
   for btn in buttons
-    button.button(type="submit", class=btn.class) #{btn.std}
+    button.btn(type="submit", class="btn-#{btn.class}") #{btn.std}
     |  
