@@ -6,6 +6,12 @@ form(method="#{method}", id="#{id}")
         if (form.label && form.type != "checkbox")
           label(for="#{form.id}") #{form.label}
         case form.type
+
+          when "p"
+            if (form.value)
+              p(id=form.id, class=form.class) 
+                strong #{form.value}
+
           when "text"
             if (form.value)
               input.form-control(type=form.type, name=form.name, id=form.id, value=form.value)
@@ -14,23 +20,19 @@ form(method="#{method}", id="#{id}")
 
           when "textarea"
             if (form.value)
-              textarea(name=form.name, id=form.id) #{form.value}
+              textarea.form-control(name=form.name, id=form.id, rows="3") #{form.value}
             else
-              textarea(name=form.name, id=form.id)
+              textarea.form-control(name=form.name, id=form.id, rows="3")
 
           when "checkbox"
-            if (form.value)
-              .row
-                .small-1.columns
-                  input(type=form.type, name=form.name, id=form.id, checked)
-                .small-11.columns
-                  label(for=form.id) #{form.label}
-            else
-              .row
-                .small-1.columns
-                  input(type=form.type, name=form.name, id=form.id)
-                .small-11.columns
-                  label(for=form.id) #{form.label}
+            .form-group: .checkbox
+              if (form.value)
+                label(for=form.id) #{form.label}
+                input(type=form.type, name=form.name, id=form.id, checked)
+              else
+                label(for=form.id) #{form.label}
+                input(type=form.type, name=form.name, id=form.id)
+            hr
                   
           default
             if (form.value)

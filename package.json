@@ -1,6 +1,6 @@
 {
   "name": "forms-middleware",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "make forms with objects and middleware, uses jade",
   "main": "lib/index.js",
   "private": "private",
