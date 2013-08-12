@@ -2,8 +2,11 @@ mixin button(type, classes, val)
   button.btn(type=type, class="btn-" + classes)=val
 
 mixin input(type, classes, name, id, val)
-  if (val && type == "checkbox")
-    input(type=type, class=classes, name=name, id=id, checked)
+  if (type == "checkbox")
+    - if (val)
+      input(type=type, class=classes, name=name, id=id, value="#{val ? true : false}", checked)
+    - else
+      input(type=type, class=classes, name=name, id=id, value="#{val ? true : false}")
   else if (val)
     input.form-control(type=type, class=classes, name=name, id=id, value=val)  
   else
@@ -24,12 +27,15 @@ mixin csrf(val)
 
 form(method="#{method}", id="#{id}")
   fieldset
+
     legend #{title}
+
     for form in forms
       .form-group
+
         if (form.label && form.type != "checkbox")
           +label(form.id, form.label)
-          //- label(for="#{form.id}") #{form.label}
+
         case form.type
 
           when "p"
@@ -38,41 +44,22 @@ form(method="#{method}", id="#{id}")
                 strong #{form.value}
 
           when "text"
-            +input(form.type, form.classes, form.name, form.id, form.value)
-            //- if (form.value)
-            //-   input.form-control(type=form.type, name=form.name, id=form.id, value=form.value)
-            //- else
-            //-   input.form-control(type=form.type, name=form.name, id=form.id)
+            +input(form.type, form.class, form.name, form.id, form.value)
 
           when "textarea"
             +textarea(form.name, form.id, form.rows, form.value)
-            //- if (form.value)
-            //-   textarea.form-control(name=form.name, id=form.id, rows="3") #{form.value}
-            //- else
-            //-   textarea.form-control(name=form.name, id=form.id, rows="3")
 
           when "checkbox"
             .form-group: .checkbox
               +checkbox(form.name, form.id, form.label, form.value)
-              //- if (form.value)
-              //-   label(for=form.id) #{form.label}
-              //-   input(type=form.type, name=form.name, id=form.id, checked)
-              //- else
-              //-   label(for=form.id) #{form.label}
-              //-   input(type=form.type, name=form.name, id=form.id)
             hr
-                  
+
           default
             +input(form.type, "", form.name, form.id, form.value)
-            //- if (form.value)
-            //-   input.form-control(type=form.type, name=form.name, id=form.id, value=form.value)
-            //- else
-            //-   input.form-control(type=form.type, name=form.name, id=form.id)
 
     if (_csrf)
-      //- input(type="hidden", name="_csrf", value=_csrf)
       +csrf(_csrf)
   //- buttons & form ending, etc
   for btn in buttons
-    button.btn(type="submit", class="btn-#{btn.class}") #{btn.std}
+    +button(btn.type, btn.class, btn.std)
     |  
