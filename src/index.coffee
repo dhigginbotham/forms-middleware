@@ -36,7 +36,7 @@ form = (req, opts) ->
   # form csrf protection
   @_csrf = if req.session._csrf? then req.session._csrf else null
 
-  @framework = "foundation"
+  @framework = "bootstrap"
 
   # extend form, for dynamic opts
   if opts? then _.extend @, opts
