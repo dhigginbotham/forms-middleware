@@ -34,7 +34,7 @@ form = (req, opts) ->
   ]
 
   # form csrf protection
-  @_csrf = if req.session._csrf? then req.session._csrf else null
+  @csrf = if req.hasOwnProperty('csrfToken') == true then req.csrfToken() else null
 
   @framework = "bootstrap"
 
